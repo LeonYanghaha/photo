@@ -1,0 +1,60 @@
+<%- include('./public/head.ejs') %>
+
+<div id="userinfo_main_div">
+    <div class="panel panel-default userinfo_panel">
+        <div class="panel-heading"><h3> 发表的照片<small>&nbsp;&nbsp;—— 行摄天下</small></h3></div>
+    </div>
+
+    <hr style="height:1px;border:none;border-top:1px solid #555555;" />
+    <div class="userinfo_photo_div">
+        <% photo_data.page_data.forEach(function(photo){%>
+        <div class="userinfo_photo_img">
+            <img src='<%=path%>/<%=photo.photoName%>'>
+        </div>
+        <div class="page-header userinfo_photo_title">
+            <h1><%=photo.photoNiname %> <small style="font-size: 15px">拍摄于：<%=photo.photoAddress %>&nbsp;&nbsp;<%=photo.photoCreatetime %></small>
+            </h1>
+            <p> &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px">上传时间：</span><%=photo.photoUpdatetime %></p>
+            <p> &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px">照片简介：</span> <%=photo.photoIntroduce %></p>
+        </div>
+        <% }) %>
+
+        <div class="index_body_image_pageNumber">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <% if(photo_data.page_current-0>1){ %>
+                    <li>
+                        <a href="<%=path%>/get_useinfo/<%=photo_data.page_current -1%>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <% } %>
+                    <% if(photo_data.page_current-0>1){ %>
+                    <li><a href="<%=path%>/get_useinfo/<%=photo_data.page_current -1%>"><%=photo_data.page_current -1%></a></li>
+                    <% } %>
+
+                    <li><a href="<%=path%>/get_useinfo/<%=photo_data.page_current%>"><%=photo_data.page_current%></a></li>
+
+                    <% if((photo_data.page_current-0)<(photo_data.page_count_page-0)){ %>
+                    <li><a href="<%=path%>/get_useinfo/<%=photo_data.page_current -0+1%>"><%=photo_data.page_current-0 +1%></a></li>
+                    <% } %>
+                    <li><a>当前第<%=photo_data.page_current%>页</a></li>
+                    <li><a>共<%=photo_data.page_count_page-0 %>页</a></li>
+                    <% if((photo_data.page_current-0)<(photo_data.page_count_page-0)){ %>
+                    <li>
+                        <a href="<%=path%>/get_useinfo/<%=photo_data.page_current-0 +1%>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+</div>
+
+
+<%- include('./public/foot.ejs') %>
+<%- include('./public/toTop.ejs') %>

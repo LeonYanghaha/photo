@@ -1,0 +1,8 @@
+
+CALL insert_user('yk','yk','yi@163.com',0,'tianjing','haha','ÎûÎû¹ş¹ş');
+
+
+CALL insert_photo('y22k',4,"dizhi",NOW(),'ÎûÎû¹ş¹ş');
+
+
+CALL insert_comment(4,4,"dizhi",NOW(),3);

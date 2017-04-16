@@ -1,0 +1,32 @@
+<%- include('./public/head.ejs') %>
+
+<div class="result_main_div">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                焦点拍客
+                <small>
+                    __ 行摄天下
+                </small>
+            </h3>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h4>你的页面找不到了，可能是服务器睡着了，等会再来试试吧....</h4>
+    </div>
+    <div class="result_div">
+        <span class="result_span result_span_index">
+              <a href="<%=path%>/">返回首页</a>
+        </span>&nbsp;&nbsp;&nbsp;
+        <span class="result_span result_span_focus">
+            <a href="<%=path%>/get_focus">关注</a>
+        </span>&nbsp;&nbsp;&nbsp;
+        <span class="result_span result_span_focus">
+             <a href="<%=path%>/get_useinfo">我的主页</a>
+        </span>&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<%- include('./public/foot.ejs') %>
+<%- include('./public/toTop.ejs') %>

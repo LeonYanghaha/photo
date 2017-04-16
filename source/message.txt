@@ -1,0 +1,74 @@
+(SELECT 	
+	0 message_Type,  -- 消息的类型
+	user.userId message_toId ,-- 消息是发给谁的。
+	love.love_Time message_Time, -- 消息的时间
+	love.love_Uid message_Uid,  -- 产生消息的用户的id
+	user.userName   message_userName , -- 产生消息的用户的名字
+	user.userBack   message_userBack , -- 产生消息的用户的头像
+	love.love_State message_State , -- 这条状态是否被阅读
+	--  以下是点赞的特有的属性
+	love.love_Pid message_L_pid,    -- 点赞的 照片的id
+	photo.photoName message_L_photoName,  -- 被点赞的照片的路径
+	photo.photoNiname message_L_photoNiname , -- 照片的名字
+	photo.photoUpdatetime message_L_photoUpdatetime ,-- 被点赞的照片的发表时间
+	
+	--  以下是comment的特有的属性
+	NULL message_C_commentContent , -- 评论的内容
+	NULL message_C_photoName , -- 被评论的照片的路劲
+	NULL message_C_photoNiname, -- 被评论的照片名字
+	NULL message_C_photoUpdatetime -- 被评论的照片的上传时间	
+	 
+FROM 
+	love, photo ,USER 
+WHERE 	
+  love.love_Pid = photo.photoId AND user.userId = love.love_Uid  
+  )UNION ALL(
+ SELECT 	
+	2 message_Type,  -- 消息的类型
+	user.userId message_toId ,-- 消息是发给谁的。
+	focus.focus_Time message_Time, -- 消息的时间
+	focus.focus_Uid message_Uid,  -- 产生消息的用户的id
+	user.userName   message_userName , -- 产生消息的用户的名字
+	user.userBack   message_userBack , -- 产生消息的用户的头像
+	focus.focu_State message_State ,-- 这条状态是否被阅读
+	--  以下是点赞的特有的属性
+	NULL message_L_pid,    -- 点赞的 照片的id
+	NULL message_L_photoName,  -- 被点赞的照片的路径
+	NULL message_L_photoNiname , -- 照片的名字
+	NULL message_L_photoUpdatetime, -- 被点赞的照片的发表时间	
+	--  以下是comment的特有的属性
+	NULL message_C_commentContent , -- 评论的内容
+	NULL message_C_photoName , -- 被评论的照片的路劲
+	NULL message_C_photoNiname, -- 被评论的照片名字
+	NULL message_C_photoUpdatetime -- 被评论的照片的上传时间 
+FROM 
+	focus,USER 
+WHERE 	
+    focus.focus_Uid = user.userId
+    
+   ) UNION ALL(
+ SELECT 	
+	1 message_Type,  -- 消息的类型
+	COMMENT.commentToUser message_toId ,-- 消息是发给谁的。
+	COMMENT.commentTime message_Time, -- 消息的时间
+	COMMENT.userID message_Uid,  -- 产生消息的用户的id
+	user.userName   message_userName , -- 产生消息的用户的名字
+	user.userBack   message_userBack , -- 产生消息的用户的头像
+	comment.commentState message_State ,-- 这条状态是否被阅读
+	--  以下是点赞的特有的属性
+	NULL message_L_pid,    -- 点赞的 照片的id
+	NULL message_L_photoName,  -- 被点赞的照片的路径
+	NULL message_L_photoNiname , -- 照片的名字
+	NULL message_L_photoUpdatetime, -- 被点赞的照片的发表时间
+		
+	--  以下是comment的特有的属性
+	comment.commentContent message_C_commentContent , -- 评论的内容
+	photo.photoName message_C_photoName , -- 被评论的照片的路劲
+	photo.photoNiname message_C_photoNiname, -- 被评论的照片名字
+	photo.photoUpdatetime message_C_photoUpdatetime -- 被评论的照片的上传时间
+	 
+FROM 
+	COMMENT,USER ,photo
+WHERE 	
+    comment.photoID  = photo.photoId AND comment.userID = user.userId
+  ) 

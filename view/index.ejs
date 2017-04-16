@@ -1,0 +1,123 @@
+<%- include('./public/head.ejs') %>
+<%- include('./public/toTop.ejs') %>
+<script type="text/javascript">
+    /*
+     * 20170324
+     * 首页的瀑布流布局的JavaScript
+     * */
+    $(function(){
+        waterfall();
+//        var dataInt={'data':[{'src':'1.jpg'},{'src':'2.jpg'},{'src':'3.jpg'},{'src':'4.jpg'}]};
+//        window.onscroll=function(){
+//            if(checkscrollside()){
+//                $.each( dataInt.data, function( index, value ){
+//                    var $oPin = $('<div>').addClass('index_img_border').appendTo( $( "#index_img_div" ) );
+//                    var $oBox = $('<div>').addClass('indes_img_box').appendTo( $oPin );
+//                    $('<img>').attr('src','../' + $( value).attr( 'src') ).appendTo($oBox);
+//                });
+//                waterfall();
+//            };
+//        }
+        /*
+        * 当页面第一次打开之后，基本数据已经加载出来了。并且通过遍历显示到了页面上，现在的问题时：当滚动鼠标触发加载的函数的时候，
+        * 应该出发Ajax请求，然后将数据异步加载出来。。。但是刚刚怎么出现了一个非常诡异的问题，很费脑子。
+        *
+        * 小步快走。
+        * 慢慢来。
+        * */
+        window.onscroll = function(){
+//            if(checkscrollside()){
+//                if(page_current<=page_count_page){ //发送请求加载数据,并且将当页页书发送过去。
+//                }else{//给页面显示。。到底了。。别扯了。。
+//                }
+//            }
+        }
+    });
+    var waterfall = function(){
+        var border = $('.index_img_border');
+        //获取每个块级元素的宽度
+        var borderW = border.eq(0).width();
+        //计算每列显示 的列数..这个数字需要取整 。。。总宽度除以每列的宽度borderW
+        var borderCloum = Math.floor($(window).width() / borderW )-1;
+//        console.log(borderCloum);
+        //设置整体的样式。。也就是显示瀑布流的整个div
+        $('#index_img_div').css({
+            'width:' : borderW * borderCloum,
+            'margin': 'auto'
+        });
+        var borderHArr=[];//用于存储 每列中的所有块框相加的高度。
+        border.each(function(index,element){  //index , element 分别代表索引和对应的元素
+            //获取每个元素的高度
+            var bH = $(element).height();
+            //首先判断，如果是第一行，则直接将元素的高度存入数组。
+            if(index<borderCloum){
+                borderHArr[index] = bH;
+            }else{
+                //否则，就取出数组中高度最小的数字，并将元素放在改列。并操作数组修改。
+                var minH = Math.min.apply( null, borderHArr );//数组中的最小值minH
+                var minHIndex = $.inArray( minH, borderHArr );
+                $( element ).css({
+                    'position': 'absolute',
+                    'top': minH + 15,
+                    'left': border.eq( minHIndex ).position().left
+                });
+                //修改数组
+                borderHArr[ minHIndex ] += border.eq( index ).height() + 15;
+            }
+        });
+    };
+    /*
+    * 20170324
+    * 检测是否需要加载数据
+    * */
+    function checkscrollside(){
+        var $aPin = $('.index_img_border' );
+        var lastPinH = $aPin.last().get(0).offsetTop + Math.floor($aPin.last().height()/2);
+        var scrollTop = $( window ).scrollTop();
+        var documentH = $( document ).width();//页面高度
+        return (lastPinH*2 < scrollTop + documentH ) ? true : false;//到达指定高度后 返回true，触发waterfall()函数
+    };
+    /*
+    * 20170327
+    * 首页的小图片。
+    * 当鼠标移过的时候，将图片的 meta信息展示出来。
+    * 鼠标移除，则影藏。
+    * */
+    $(function(){
+        $('.index_img_box').hover(function(){
+            $(this).find('div').show();
+        },function(){
+            $(this).find('div').hide();
+        });
+    });
+    /*
+    * 20170330
+    * 首页 点击点赞的按钮。
+    * 出发Ajax请求。并将数据库中的数加一
+    * */
+</script>
+<div class="panel panel-info index_panel_div">
+    <div class="panel-heading"><h3>最新美图<small>&nbsp;&nbsp;—— 行摄天下</small></h3></div>
+</div>
+
+<div class="index_img_main" id="index_img_div">
+    <% if(next==0){%>
+        <% data_page.page_data.forEach(function(photo){%>
+            <div class="index_img_border" >
+                <div class="index_img_box">
+                    <a href="<%=path%>/photo/getPhotoById/<%=photo.photoId%>" target="_blank">
+                        <img src='<%=path%>/<%=photo.photoName%>' class="index_img_image">
+                    </a>
+                    <div class="index_img_metaInfo">
+                        <span class="index_img_metaInfo_title"><%=photo.photoNiname%></span>
+                        <span class="index_img_metaInfo_focusAuthor"><a href="<%=path%>/user/focusAuthor/<%=photo.userId%>">将作者加关注</a></span><br/>
+                        <span>介绍：<%=photo.photoIntroduce%></span>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    <% }else{%>
+    别扯了。。到底了。。
+    <%}%>
+
+</div>

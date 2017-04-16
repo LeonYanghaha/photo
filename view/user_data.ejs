@@ -1,0 +1,87 @@
+<%- include('./public/head.ejs') %>
+
+<div class="data_main_div">
+    <div class="panel panel-info data_panel">
+        <div class="panel-heading"><h3>焦点拍客<small>&nbsp;&nbsp;—— 行摄天下</small></h3></div>
+    </div>
+    <br/>
+    <div class="data_options_div">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-info data_options_div_basicInfo">修改基本资料
+                <span class="data_options_basicInfo"><br/>  点击这里，可以修改你的地址，性别等基本信息</span>
+            </li>
+
+            <li class="list-group-item list-group-item-info data_options_div_passWord">修改密码
+                <span class="data_options_passWord"><br/>  点击这里，修改密码</span>
+            </li>
+
+            <li class="list-group-item list-group-item-info data_options_div_backGround">修改背景图
+                <span class="data_options_backGround"><br/>  点击这里，修改背景图片的显示</span>
+            </li>
+            <li class="list-group-item list-group-item-info data_options_div_focusW">我的关注
+                <span class="data_options_focusW"><br/>  在这里可以看见你关注的所有用户</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+
+        $('.data_options_div_basicInfo').hover(function(){
+            showSpan(1);
+        },function(){
+            hidenSpan(1);
+        }).click(function(){
+            location.href = "<%=path%>/user/basicInfo";
+        });
+        $('.data_options_div_passWord').hover(function(){
+            showSpan(2);
+        },function(){
+            hidenSpan(2);
+        }).click(function(){
+            location.href = "<%=path%>/user/passWord";
+        });
+        $('.data_options_div_backGround').hover(function(){
+            showSpan(3);
+        },function(){
+            hidenSpan(3);
+        }).click(function(){
+            location.href = "<%=path%>/user/backGround";
+        });
+        $('.data_options_div_focusW').hover(function(){
+            showSpan(4);
+        },function(){
+            hidenSpan(4);
+        }).click(function(){
+            location.href = "<%=path%>/user/focusW";
+        });
+
+    });
+    var hidenSpan = function(flag){
+        if(1==flag){
+            $('.data_options_basicInfo').hide();
+        }else if(2==flag){
+            $('.data_options_passWord').hide();
+        }else if(3==flag) {
+            $('.data_options_backGround').hide();
+        }else if(4==flag){
+            $('.data_options_focusW').hide();
+        }
+    };
+    var showSpan = function(flag){
+      if(1==flag){
+        $('.data_options_basicInfo').show();
+      }else if(2==flag){
+          $('.data_options_passWord').show();
+      }else if(3==flag) {
+          $('.data_options_backGround').show();
+      }else if(4==flag){
+          $('.data_options_focusW').show();
+      }
+    }
+</script>
+
+<%- include('./public/foot.ejs') %>
+
+<%- include('./public/toTop.ejs') %>

@@ -1,0 +1,133 @@
+<%- include('./public/head.ejs') %>
+
+<script type="text/javascript">
+    /*
+     * 20170323
+     * 异步加载省市县三级
+     * 当页面加载完成之后，直接触发下面的函数
+     * */
+    $(function(){
+        $.get(
+            '<%=path%>/other/getProvice',
+                function(data){
+                   $('.userAddress_provice').prepend(data);
+                     setCity($('.userAddress_provice').val());
+                }
+        );
+        //当选择好了省份以后，默认的触发下面这个函数，并且返回各个市。  userAddress_city
+        $('.userAddress_provice').change(function(){
+            setCity($(this).val());
+        });
+        //当选择好市一级，则异步请求县级  userAddress_area
+        $('.userAddress_city').change(function(){
+            setArea($(this).val());
+        });
+        //设置县
+        var setArea = function(id){
+            var temp = getProviceIdByString(id);
+            $.get(
+                    '<%=path%>/other/getarea/'+temp,
+                    function(data){
+                        $(".userAddress_area").empty(".areaList");
+                        $('.userAddress_area').prepend(data);
+                    }
+            );
+        }
+        //设置市
+        var setCity = function(id){
+            var temp = getProviceIdByString(id);
+            $.get(
+                    '<%=path%>/other/getCity/'+temp,
+                    function(data){
+                        $(".userAddress_city").empty(".cityList");
+                        $('.userAddress_city').prepend(data);
+                        $(".userAddress_area").empty(".areaList");
+                        setArea( $('.userAddress_city').val());
+                    }
+            );
+        }
+        //传入一个字符串。。返回该省的ID
+        var getProviceIdByString = function(str){
+            return str.substring(str.lastIndexOf("%")+1,str.length);
+        }
+    });
+</script>
+<div id="regist_main_div">
+    <div id="regist_form">
+<form action="<%=path%>/user/regist" method="post"  class="form-horizontal" role="form">
+
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label"><span style="color: red">*&nbsp;</span>昵 称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control userName" placeholder="请输入名字" name="userName">
+                <span class="userName_span">&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label"><span style="color: red">*&nbsp;</span>密 码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control userPassword" placeholder="密码" name="userPassword">
+                <span class="userPassword_span">&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label"><span style="color: red">*&nbsp;</span>确认密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control reuserPassword" placeholder="确认密码" name="reuserPassword">
+                <span class="reuserPassword_span">&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">性 别</label>
+            <div class="col-sm-10">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="userSex" value="1" checked="checked">男
+                    </label>
+                    <label>
+                        <input type="radio" name="userSex"  value="0">女
+                    </label>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label" >邮 箱</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control userEmail" placeholder="邮箱" name="userEmail" >
+                <span class="userEmail_span">&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">居 住 地</label>
+            <div class="col-sm-10">
+                &nbsp;省：&nbsp;<select class="userAddress_provice" name="userAddress_provice"></select>
+                &nbsp;市：&nbsp;<select class="userAddress_city" name="userAddress_city"></select>
+                &nbsp;区：&nbsp;<select class="userAddress_area" name="userAddress_area"></select>
+                <span>&nbsp;</span><br/>
+            </div>
+        </div>
+
+        <div class="form-group"><br/>
+            <label for="firstname" class="col-sm-2 control-label">个性签名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control userIntroduce" placeholder="个性签名" name="userIntroduce">
+                <span>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-info">提 交</button>
+            </div>
+        </div>
+</form>
+    </div>
+</div>
+<%- include('./public/foot.ejs') %>
+<%- include('./public/toTop.ejs') %>

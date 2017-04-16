@@ -1,0 +1,65 @@
+<%- include('./public/head.ejs') %>
+
+<div class="publish_main_div">
+    <div class="panel panel-info userpublish_panel">
+        <div class="panel-heading"><h3> 发表新照片<small>&nbsp;&nbsp;—— 行摄天下</small></h3></div>
+    </div>
+    <div class="publish_form_div">
+        <form method="post" action="<%=path %>/user/user_publish" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">照片名字</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="照片名字" name="photoNiname">
+                    <span class="photoNiname_span">&nbsp;</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">拍摄时间</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="拍摄时间" name="photoCreatetime">
+                    <span class="photoCreatetime_span">&nbsp;</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">拍摄地方</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="拍摄地方" name="photoAddress">
+                    <span class="photoAddress_span">&nbsp;</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">照片介绍</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="照片介绍" name="photoIntroduce">
+                    <span class="photoIntroduce_span">&nbsp;</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">照片</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" name="_id" onchange="previewFile()"/>
+                    <span class="userName_span">&nbsp;</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-info">发表</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                 <img src=""  class="publish_img_preview"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<%- include('./public/foot.ejs') %>
+<%- include('./public/toTop.ejs') %>

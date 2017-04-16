@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+   <title><%=title%></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
+    <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=path%>/css/public.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<%=path%>/js/public.js"></script>
+</head>
+<body>
+<div id="page_main">
+    <div id="head_main_div">
+        <% if(0==page_flag){%>
+             <img src="<%=path%>/img/hero_bg.jpg" class="head_background_img">
+        <%}else {%>
+            <img src="<%=path%>/img/head_title.png" class="head_background_img">
+        <%}%>
+        <div class="head_meta">
+            <div class="head_meanu">
+                <a href="<%=path%>/">首页</a>&nbsp;&nbsp;&nbsp;
+                <a href="<%=path%>/get_focus">关注</a>&nbsp;&nbsp;&nbsp;
+                <a href="<%=path%>/get_useinfo">用户主页</a>
+            </div>
+            <div class="head_info">
+                <%if(!user){%>
+                    <a href="<%=path%>/user_login" >登录</a>
+                    <a href="<%=path%>/user_regist" >注册</a>&nbsp;&nbsp;
+                      <a href="<%=path%>/admin" target="_blank">后台管理</a>&nbsp;&nbsp;
+                <%}else{%>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span style="color: red;display: none" class="head_userInfo_logo"><b>&hearts;</b></span>
+                        <%=user.userName%>
+                        <input type="hidden" name="userId" value=" <%=user.userId%>" class="head_meanu_userId">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="<%=path%>/user/user_publish">我要发表</a></li>
+                        <li>
+                            <a href="<%=path%>/user/user_message" class="head_meanu_message">
+                                个人消息
+                            </a>
+                        </li>
+                        <li><a href="<%=path%>/user/user_data">修改个人资料</a></li>
+                        <% if(user.userType>=11){ %>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="<%=path%>/admin" target="_blank">后台管理</a></li>
+                        <% } %>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="<%=path%>/user/user_logout">退出登陆</a></li>
+                    </ul>
+                </div>
+                <% } %>
+            </div>
+            <hr/>
+            <% if(0==page_flag){%>
+            <img src="<%=path%>/img/logo.png" class="head_logo">
+            <div class="head_words">
+                <p>新的世界常常首先出现在旅行者的视野里.<br/>
+                    他们抱着单程旅行的勇气出发.<br/>
+                    只为了发现了一个新天地.<br/>
+                    经过的地方会看到罹难者的墓碑.<br/>
+                    但那又怎样呢.<br/>
+                    在家终老难道就是幸福吗？</p>
+                <br/> <br/>
+                <input class="btn btn-primary head_btn_joinPaike" type="button" value="加入拍客">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="btn btn-primary head_btn_underStrand" type="button" value="了解拍客">
+                <%}%>
+            </div>
+
+        </div>
+
+        <div class="head_underStand_main_div">
+            <img class="head_underStand_close_logo" src="<%=path%>/img/close_logo.png">
+            <div class="head_underStand_img">
+                <img class="head_underStand_left" src="<%=path%>/img/timg.jpg">
+                <img class="head_underStand_center" src="<%=path%>/img/timg.jpg">
+                <img class="head_underStand_right" src="<%=path%>/img/timg.jpg">
+            </div>
+            <div class="head_underStand_span">
+                <span class="head_underStand_span_left">head_underStand_span_left</span>
+                <span class="head_underStand_span_center">head_underStand_span_center</span>
+                <span class="head_underStand_span_right">head_underStand_span_right</span>
+            </div>
+        </div>
+    </div>

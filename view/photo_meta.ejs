@@ -1,0 +1,114 @@
+<%- include('./public/head.ejs') %>
+
+<div class="photo_meta_main_div">
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3><%=photo.photoNiname%><small>&nbsp;&nbsp;
+                    <a href="<%=path%>/user/getUserById/<%=photo.photoUser%>?page=1" title="点击进入ta的主页">_@<%=photo.userName %> </a>上传</small></h3>
+        </div>
+    </div>
+    <div class="photo_meta_div_img">
+        <img src="<%=path%>/<%=photo.photoName%>" class="photo_meta_img">
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading"> <span style="font-size: 23px"><%=photo.photoNiname%></span>&nbsp;&nbsp;&nbsp;_上传于<%=photo.photoUpdatetime%></div>
+        <div class="panel-body">
+               <a href="<%=path%>/user/getUserById/<%=photo.photoUser%>?page=1" title="点击进入ta的主页">作者：<%=photo.userName%></a>&nbsp;&nbsp;&nbsp;
+               拍摄时间：<%=photo.photoCreatetime%>&nbsp;&nbsp;&nbsp;
+               拍摄地点：<%=photo.photoAddress%>
+            <br/>
+            简介：<%=photo.photoIntroduce%>
+        </div>
+        <div class="panel-body">
+            作者信息：<%=photo.userSex==0?'女':'男'%>   <%=photo.userIntroduce%>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading"> <span style="font-size: 23px">写入评论</span></div>
+        <div class="panel-body">
+            <form action="<%=path%>/user/publish_comment" method="post">
+                <textarea class="photo_meta_comment" name="comment" placeholder="写入你的精彩评论吧..." rows="3" cols="45">
+                </textarea>
+                <input type="hidden" name="photoId" value="<%=photo.photoId%>">
+                <input type="hidden" name="photoUser" value="<%=photo.photoUser%>">
+                <input class="btn btn-default" type="submit" value="发表我的评论">
+                <input class="btn btn-primary photo_meta_love_btn" type="button" style="margin-left: 40px" value="赞">
+            </form>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <span style="font-size: 23px">精彩评论</span></div>
+            </div>
+           <div class="photo_meta_comment_divList">
+               <% if(comment.length>=1){ %>
+                    <% comment.forEach(function(comment){ %>
+                       <div class="photo_meta_commentDiv">
+                                   <span class="photo_meta_comment_username">
+                                       <a href="<%=path%>/user/getUserById/<%=comment.userId%>?page=1" title="点击进入ta的主页">
+                                            <%=comment.userName%>:
+                                       </a>
+                                   </span>
+                                   <span class="photo_meta_comment_commentContent"><br/>&nbsp;&nbsp;&nbsp;&nbsp;<%=comment.commentContent%></span>
+                                   <span class="photo_meta_comment_commentTime"><%=comment.commentTime%></span>
+                                   <span class="photo_meta_comment_replay">
+                                        <input class="btn btn-default photo_meta_comment_replay_btn" type="button" value="回复"><br/>
+                                   </span>
+                          </div>
+                    <%  }); %>
+               <% } else{%>
+               <div class="photo_meta_commentNone">
+                        <span>暂无评论!</span>
+               </div>
+               <% } %>
+           </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    /*
+    * 20170405
+    * 点击了下方的回复按钮，需要做的动作是：
+    * 第一：影藏这个按钮。
+    * 第二：显示输入框。..给这个按钮之后追加表单
+    * */
+    $('.photo_meta_comment_replay_btn').click(function(){
+//        var divStr = '<div class="photo_meta_replay_div"><textarea class="photo_meta_replay_text" name="replay" placeholder="写入你的精彩评论吧..." rows="2" cols="30"></textarea><input class="btn btn-default photo_meta_replay_btn" type="submit" value="发表"></div>';
+//        $('.photo_meta_comment_replay_btn').hide();
+//        $('.photo_meta_commentDiv').appendTo(divStr);
+    });
+
+    /*
+    * 20170330
+    * 获取按钮上的字。
+    * 如果原来是 赞  ，则变为取消赞。
+    * 如果是取消赞  变为赞
+    * 然后在发送Ajax请求。
+    * 在数据库做相应的操作。
+    * */
+    $(function(){
+        $('.photo_meta_love_btn').click(function(){
+            var btnW = $(this).val();
+            if('赞'==btnW){
+                /*
+                * 如果原来就是赞，则说明原来没有点赞，则现在是要点赞，就往数据库里写数据。
+                * 需要一个参数，是当前用照片的id
+                * */
+                $(this).val('取消赞');
+                $.post(
+                        '<%=path%>/photo/loveAdd',
+                        {photoId:'<%=photo.photoId%>'}
+                )
+            }else if('取消赞'==btnW){
+                /*
+                * 这种情况说明是取消点赞
+                * */
+                $(this).val('赞');
+                $.post(
+                        '<%=path%>/photo/loveRe',
+                        {photoId:'<%=photo.photoId%>'}
+                )
+            }
+        });
+    });
+</script>
+<%- include('./public/foot.ejs') %>
+<%- include('./public/toTop.ejs') %>

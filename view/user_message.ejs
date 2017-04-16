@@ -1,0 +1,52 @@
+<%- include('./public/head.ejs') %>
+
+<div class="user_message_main_div">
+ <div class="panel panel-info user_message_panel">
+  <div class="panel-heading"><h3>我的消息</h3></div>
+ </div>
+ <div class="user_message_main">
+
+     <% if(!(0==messageList)){ %>
+           <% messageList.forEach(function(message){%>
+             <% if(message.message_Type == 0){ %>
+                    <b>有人给你点赞啦</b>&nbsp;&nbsp;&nbsp;<%=message.message_userName%>给你的照片点赞了.
+                     <br/>&nbsp;&nbsp;&nbsp;时间：<%=message.message_Time%><br/>
+                     <img src="<%=path%>/<%=message.message_L_photoName%>" alt="<%=message.message_L_photoName%>" class="user_message_img">
+             <% }else if(message.message_Type == 1){ %>
+                    <b>有新评论了</B>&nbsp;&nbsp;&nbsp;<%=message.message_userName%>评论了你的照片：<%=message.message_C_photoNiname%>
+                    <br/>&nbsp;&nbsp;&nbsp;他说：<%=message.message_C_commentContent%>
+                    <br/>&nbsp;&nbsp;&nbsp;时间：<%=message.message_Time%><br/>
+                    <a href="<%=path%>/photo/getPhotoById/">
+                     <img src="<%=path%>/<%=message.message_C_photoName%>" alt="<%=message.message_C_photoNiname%>" class="user_message_img">
+                     </a>
+            <% }else if(message.message_Type == 2){ %>
+                    <b>你有新的粉丝了...</b>&nbsp;&nbsp;&nbsp;<%=message.message_userName%>关注了你，你的动态将会出现在ta的关注页面。点击
+             <a href="#">这里</a>，可以进入他的主页
+                    <br/>&nbsp;&nbsp;&nbsp;时间：<%=message.message_Time%><br/>
+             <% } %>
+            <hr/>
+           <% }) %>
+     <% } else {%>
+         <div class="userinfo_photo_info">
+                <span>
+                    暂时还没有新的动态...洗洗睡吧
+                </span>
+         </div>
+     <% } %>
+
+ </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        /*
+        * 20170409
+        *打开这个页面，也就意味着所有的消息已经被阅读了，所以在这里可以修改消息的状态了。
+        * */
+        $.post(
+                '../../user/updateMessageState'
+        );
+
+    });
+</script>
+<%- include('./public/foot.ejs') %>
+<%- include('./public/toTop.ejs') %>

@@ -1,0 +1,5 @@
+node-schedule	定时任务
+GM	处理图片
+grunt  前端自动化
+pm2：便捷管理 node 服务进程
+log4js：中的日志管理模块使用与封装

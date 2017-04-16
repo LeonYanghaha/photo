@@ -1,0 +1,585 @@
+/*
+20170409
+关于本站点的样式
+*/
+.about_webStack_main_div {
+
+}
+.about_webStack_main_div{
+    width: 70%;
+/*    border: 2px solid gold;*/
+    margin: auto;
+}
+.about_webStack_img_div{
+    text-align: center;
+}
+.about_webStack_img_div span{
+    font-size: 17px;
+}
+.about_webStack_img{
+    width: 500px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+/*
+20170409
+关于作者页面的样式
+*/
+.about_Author_main_div{
+/*    border:  2px solid grey;*/
+    width: 70%;
+    margin: auto;
+}
+.about_Author_title{
+    margin: auto;
+    margin-top: 5px;
+}
+.about_author_img{
+    border-radius: 50%;
+/*    border: 2px solid green;*/
+    width: 400px;
+    -moz-box-shadow:0 0 10px 15px #c1c1c1; /*投影方式 X轴偏移量 Y轴偏移量阴影模糊半径 阴影扩展半径 阴影颜色;*/
+    -webkit-box-shadow:0 0 10px 15px #c1c1c1;
+    box-shadow:  0 0 10px 15px #c1c1c1;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+.about_author_img_div{
+    text-align: center;
+/*    border: 2px solid green;*/
+}
+.about_author_panel{
+    text-align: left;
+}
+.about_author_panel_body{
+    font-size: 16px;
+    line-height: 40px;
+    padding-left: 40px;
+}
+.about_author_panel_body_span{
+    padding-bottom: 6%;
+}
+.about_author_panel_body_phone{
+    text-align: center;
+}
+    /*
+    20170406
+    返回到顶部的样式
+    均以toTop_**开头
+    */
+.toTop_main_div{
+    position: fixed;
+    top:80%;
+    left: 92%;
+    display: none;
+    text-align: center;
+}
+.topTop_img{
+    width: 30px;
+}
+.topTop_span{
+    font-size: 5px;
+}
+/*
+20170405
+评论区的样式
+*/
+.photo_meta_comment_divList{
+/*    border: 2px solid red;*/
+}
+/* 单条的评论*/
+.photo_meta_commentDiv{
+   border:2px solid #ccc;
+    border-radius: 10px;
+    padding-left: 50px;
+    padding-top: 6px;
+    padding-bottom: 26px;
+}
+.photo_meta_comment_username{
+    font-size: 20px;
+}
+.photo_meta_comment_commentContent{
+    font-size: 17px;
+    text-indent:2em;
+}
+.photo_meta_comment_commentTime{
+    float: right;
+    padding-right: 17%;
+    font-size: 10px;
+    color: #C5C5C7;
+    margin-top: 3px;
+}
+.photo_meta_comment_replay{
+    float: right;
+    margin-right: 2%;
+    font-size: 15px;
+/*    border: 2px solid green;*/
+}
+.photo_meta_commentNone{
+    text-align: center;
+}
+.photo_meta_commentNone span{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+.photo_meta_replay_div{
+  /*  border: 2px solid red;*/
+ /*   display: none;*/
+}
+.photo_meta_replay_text{
+    font-size: 18px;
+    resize: none;/*禁止文本域拖到大小*/
+    margin-left: 5%;
+}
+.photo_meta_replay_btn{
+}
+/*
+20170405
+发表页面的样式
+*/
+.publish_main_div{
+    width: 100%;
+    padding-bottom: 25%;
+}
+.publish_form_div{
+    width: 60%;
+   /* border:2px  solid green;*/
+    margin: auto;
+}
+.userpublish_panel{
+    width: 70%;
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.publish_img_preview{
+    width: 400px;
+    height: auto;
+    margin-left: 200px;
+}
+/*
+20170403
+登陆页面的样式
+*/
+.user_login_div{
+    width: 70%;
+    margin: auto;
+    margin-top: 4%;
+}
+.user_login_form{
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20%;
+    padding-top: 4%;
+}
+/*
+20170403
+用户的消息页面的样式
+*/
+.user_message_main_div{
+/*    border: 2px solid grey;*/
+    width: 100%;
+}
+.user_message_main{
+    width: 55%;
+    margin: auto;
+    font-size: 17px;
+    margin-top: 50px;
+}
+.user_message_panel{
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+}
+.user_message_img{
+    width: 30%;
+/*    border: 2px solid red;*/
+    border-radius: 20px;
+    margin-left: 35%;
+}
+/*
+*  20170320
+*  共用的CSS样式
+*/
+body{
+    padding: 0px;
+    margin: 0px;
+}
+#page_main{
+ /*   border: 2px solid red;*/
+    width:auto;
+}
+.head_background_img{
+    width: 100%;
+    position: absolute;
+    z-index:-1;
+   /* border: 2px solid green;*/
+}
+.head_main_div{
+}
+/*头部 菜单栏的样式*/
+.head_meanu{
+    padding-top: 4%;
+    padding-left: 16%;
+    font-size: 20px;
+    display: inline-block;
+/*    border: 2px solid red;*/
+}
+/*用户信息相关的CSS样式  包括用户登录，注册等*/
+.head_info{
+ /*   border: 2px solid red;*/
+    padding-right: 15%;
+    padding-top: 4%;
+    float: right;
+}
+.head_logo{
+    padding-left: 16%;
+    width: 30%;
+    margin-top: 2%;
+}
+/*
+页面图片上方的大段文字
+*/
+.head_words{
+/*    border: 2px solid green;*/
+    width: 60%;
+    margin-left: 16%;
+    margin-top: 4%;
+    margin-bottom: 20%;   /* 这个值设置的是下方的瀑布流布局距离这个的高度 */
+}
+.head_words p{
+    font-size:150%;
+    line-height: 140%;
+}
+.head_underStand_main_div{
+    /*border: 2px solid gold;*/
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: gainsboro;
+    filter:alpha(opacity=70); /*IE滤镜，透明度50%*/
+    -moz-opacity:0.7; /*Firefox私有，透明度50%*/
+    opacity:0.7;/*其他，透明度50%*/
+    display: none;
+}
+/* 右上角的关闭的按钮*/
+.head_underStand_close_logo{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    float: right;
+    width: 30px;
+    height: 30px;
+    cursor:pointer;
+}
+/*页面中间的三个图片的div*/
+.head_underStand_img{
+     top:25%;
+     left:12%;
+     position: absolute;
+     border: 2px solid palegreen;
+ }
+.head_underStand_img img{
+    width: 350px;
+    border: 2px solid blue;
+    padding: 10px;
+    border:1px solid #ccc;
+    box-shadow: 0 0 6px #ccc;
+    border-radius: 5px;
+}
+.head_underStand_span{
+    border:  2px solid lawngreen;
+    position: absolute;
+    top:65%;
+}
+/* 注册页面的样式  注册页面的样式，class和ID都是以registe 开头 */
+#regist_main_div{
+/*    border: 2px solid red;*/
+}
+/* 注册的表单的样式*/
+#regist_form{
+    width: 45%;
+    margin: auto;
+    padding-top: 5%;
+/*    border: 2px solid green;*/
+}
+.userIntroduce{
+    display: inline;
+}
+/*
+20170321
+底部的样式
+*/
+.foot_main_div{
+   /* border: 2px solid red;*/
+    margin: auto;
+    padding-top: 4%;
+    position: relative;
+}
+.foot_words_div{
+     margin:auto;
+/*     border: 2px solid pink;*/
+     width: 50%;
+    text-align:center;
+    padding-bottom: 4%;
+ }
+.foot_words_div a{
+    margin-left: 4%;
+}
+.foot_words_div p{
+    margin:auto;
+    font-size: 20px;
+}
+/*
+20170327
+用户关注页面的样式
+*/
+.focus_main_div{
+    width: 70%;
+    margin: auto;
+/*    border: 2px solid green;*/
+}
+.focus_panel{
+    margin: auto;
+}
+.focus_img_div{
+    width: 100%;
+}
+.focus_img_div img{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border:1px solid #ccc;
+    box-shadow: 0 0 6px #ccc;
+    border-radius: 5px;
+
+}
+/*
+20170322
+用户主页的样式。
+用户主页的ID，class的命名规则是均以userinfo 开始
+*/
+#userinfo_main_div{
+    /*border: 2px solid red;*/
+    width: 100%;
+}
+.userinfo_photo_div img{
+    margin: auto;
+    display: block;
+    width: 100%;
+}
+.userinfo_photo_div{
+    /*border:  2px solid green;*/
+    margin: auto;
+    width: 70%;
+}
+.userinfo_photo_img img,h1{
+    display: block;
+    margin: auto;
+    text-align:center
+}
+.userinfo_panel{
+    width: 70%;
+    margin: auto;
+    margin-top: 2%;
+/*    margin-bottom: 3%;*/
+}
+.userinfo_photo_info{
+/*这个标签对应着关注页面和用户主页的两个div.如果要修改，要注意！*/
+/*    border:  2px solid green;*/
+    text-align: center;
+    font-size: 20px;
+    margin: 5% auto;
+}
+/*
+20170324
+设置首页的样式。。主要是瀑布流布局的样式
+*/
+.index_img_main{
+/*    border: 2px solid green;*/
+    position: relative;
+    left: 12%;
+    right: 12%;
+    display:inline-block;
+    margin-top: 13%;
+/*    padding-top: 200px;*/
+}
+.index_img_border{
+/*    border: 2px solid green;*/
+    padding: 15px 0 0 15px;
+    float:left;
+}
+.index_img_box{
+/*    border: 2px solid red;*/
+    padding: 10px;
+    border:1px solid #ccc;
+    box-shadow: 0 0 6px #ccc;
+    border-radius: 5px;
+}
+.index_img_box img{
+    width:300px;
+    height:auto;
+}
+.index_panel_div{
+  /*  border:  2px solid gold;*/
+    margin: auto;
+    width: 75%;
+}
+.index_panel_div h3,small{
+  /*  border:  2px solid gold;*/
+   padding-left: 2%;
+}
+ .index_img_metaInfo{
+     border: 1px solid black;
+     z-index: 2;
+     background:ghostwhite;
+     filter:alpha(opacity=50);
+     -moz-opacity:0.5;
+     -khtml-opacity: 0.5;
+     opacity: 0.5;
+     color: #122b40;
+     position: absolute;
+     bottom:15px;
+     width: 300px;
+     height: 50px;
+     overflow:hidden;
+     display: none;
+ }
+ .index_img_metaInfo_title{
+     font-size: 15px;
+     color: black;
+ }
+ .index_img_metaInfo_focusAuthor{
+     float: right;
+     color: black;
+     padding-right: 3px;
+ }
+ .index_img_Btn{
+     position:inherit;
+ }
+ /*
+ 20170403
+分页 的样式
+ */
+ .index_body_image_pageNumber{
+     margin: auto;
+/*     border:2px solid red;*/
+     text-align: center;
+ }
+ /*
+ 20170327
+ 用户资料页
+ 样式开头均以  data_**
+ */
+ .data_main_div{
+     width: 80%;
+     margin: auto;
+/*     border: 2px solid green;*/
+ }
+.data_panel{
+    width: 90%;
+    margin: auto;
+    margin-top: 4%;
+}
+ .data_options_div{
+     width: 60%;
+/*    border:  2px solid gold;*/
+     padding-top: 2%;
+     padding-left: 12%;
+ }
+.data_options_div ul li{
+    margin-top: 3%;
+    font-size: 20px;
+    cursor:pointer;
+/*    border:  2px solid gold;*/
+}
+.data_options_div ul span{
+    font-size: 15px;
+    color:gray;
+    padding-left: 5%;
+    display: none;
+    /* border:  2px solid gold;*/
+}
+/*
+20170327
+照片详情页面
+样式的开头以   photo_meta_***
+*/
+.photo_meta_main_div{
+/*    border: 1px solid gold;*/
+    width: 70%;
+    margin: auto;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.photo_meta_div_img{
+/*    border: 2px solid gray;*/
+}
+.photo_meta_img{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    border:1px solid #ccc;
+    box-shadow: 0 0 6px #ccc;
+    border-radius: 5px;
+}
+.photo_meta_comment{
+    font-size: 18px;
+    resize: none;/*禁止文本域拖到大小*/
+    padding: 20px;
+    margin-left: 5%;
+}
+/*
+2070328
+result 页面的样式
+样式均以 result_** 开头
+*/
+.result_main_div{
+    width: 75%;
+    margin: auto;
+}
+.result_div{
+    text-align: center;
+}
+/*20170324
+清除默认的样式
+设置一些固定的样式
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+/*设置a标签的样式*/
+a:link {
+    color: gray;
+    text-decoration:none;
+}
+a:active {
+    color: red;
+}
+a:visited {
+    color:purple;
+    text-decoration:none;
+}
+a:hover {
+    color: black;
+}

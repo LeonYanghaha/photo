@@ -1,0 +1,68 @@
+<%- include('./public/head.ejs') %>
+
+
+<div class="focus_main_div">
+    <div class="panel panel-info focus_panel">
+        <div class="panel-heading"><h3><%=user.userName%>的关注动态<small>&nbsp;&nbsp;—— 行摄天下
+                </small></h3></div>
+    </div>
+    <% if(data.page_data.length>0){%>
+        <% data.page_data.forEach(function(photo){%>
+        <div class="focus_img_div">
+            <a href="<%=path%>/photo/getPhotoById/<%=photo.photoId%>" target="_blank">
+                <img src='../<%=photo.photoName%>'>
+            </a>
+        </div>
+        <div class="page-header userinfo_photo_title">
+            <h1><%=photo.photoNiname %> <small style="font-size: 15px">拍摄于：<%=photo.photoAddress %>&nbsp;&nbsp;<%=photo.photoCreatetime %></small>
+
+            </h1>
+            <p> &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px"> <%=photo.userName %>上传</span></p>
+            <p> &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px">上传时间：</span><%=photo.photoUpdatetime %></p>
+            <p> &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 20px">照片简介：</span> <%=photo.photoIntroduce %></p>
+        </div>
+        <% }) %>
+    <% }else{%>
+        <div class="userinfo_photo_info">
+            <span>
+                暂时还没有新的动态...洗洗睡吧
+            </span>
+        </div>
+    <%}%>
+
+    <div class="index_body_image_pageNumber">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <% if(data.page_current-0>1){ %>
+                <li>
+                    <a href="<%=path%>/get_focus/<%=data.page_current -1%>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <% } %>
+                <% if(data.page_current-0>1){ %>
+                <li><a href="<%=path%>/get_focus/<%=data.page_current -1%>"><%=data.page_current -1%></a></li>
+                <% } %>
+
+                <li><a href="<%=path%>/get_focus/<%=data.page_current%>"><%=data.page_current%></a></li>
+
+                <% if((data.page_current-0)<(data.page_count_page-0)){ %>
+                <li><a href="<%=path%>/get_focus/<%=data.page_current -0+1%>"><%=data.page_current-0 +1%></a></li>
+                <% } %>
+                <li><a>当前第<%=data.page_current %>页</a></li>
+                <li><a>共<%=data.page_count_page %>页</a></li>
+                <% if((data.page_current-0)<(data.page_count_page-0)){ %>
+                <li>
+                    <a href="<%=path%>/get_focus/<%=data.page_current-0 +1%>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<%- include('./public/foot.ejs') %>
+<%- include('./public/toTop.ejs') %>
