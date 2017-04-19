@@ -13,6 +13,20 @@ var data_page = require('../entity/data');
 
 module.exports = function(app){
     /*
+     * 20170419
+     * 添加cookie
+     * 实现sso
+     * */
+    app.get(
+        '/addcookie/:str',
+        function(req,res){
+            var userMd5 = req.params.str;
+            //console.log(userMd5);
+            res.cookie ('userMd5',userMd5);
+            res.send("Hello");
+        }
+    );
+    /*
      * 20170412
      * 跳转到后台管理页面的路由
      *
