@@ -352,38 +352,86 @@ router.get(
 router.post(
     '/login',//checkNotLogin,
     function(req,res,next){
-        req.on('data',function(data){
+        req.on('data',function(data) {
             var data = querystring.parse(data.toString());
             var username = data.userName;
             var password = sha1.md5(data.userPassword);
-            superagent.get(config.sso_url+"?username="+username+"&password="+password)
-                .end(function(err,result){
-                    if(err){//登陆出错
-                        console.log("哎吆。。出错了。。。。。。");
-                        res.render('result',{title:'--------。登陆失败',user:req.session.user,page_flag:1,path:config.path});
-                    }else{
-                        var result = JSON.parse(result.text);
-                        var logint_state  = result.logint_state-0;
-                        if(0==logint_state){//登陆失败
-                            res.render('result',{title:'--------。登陆失败',user:req.session.user,page_flag:1,path:config.path});
-                        }else{
-                            var user = new userEntity();
-                           user.userName = result.userName;
-                           user.userAddress = result.userAddress;
-                           user.userEmail = result.userEmail;
-                           user.userHead = result.userHead;
-                           user.userId = result.userId;
-                           user.userIntroduce = result.userIntroduce;
-                           user.userSex = result.userSex;
-                           user.userState = result.userState;
-                           user.userType = result.userType;
-                           user.userBack =  result.userBack;
-                            req.session.user = user;
-                            //console.log(user);
-                            res.render('result',{title:'登陆成功。。。。。。。。',user:req.session.user,page_flag:1,path:config.path});
+            var user;
+            var promise = new Promise(function (resolve, reject) {
+                superagent.get(config.sso_url + "?username=" + username + "&password=" + password)
+                    .end(function (err, result) {
+                        if (err) {//登陆出错
+                            reject(0);
+                        } else {
+                            var result = JSON.parse(result.text);
+                            var logint_state = result.logint_state - 0;
+                            if (1 == logint_state) {
+                                user = JSON.parse(result.user);
+                                req.session.user = user;
+                                resolve(1);
+                            } else {//登陆失败
+                                resolve(0);
+                            }
                         }
-                    }
-                });
+                    });
+            });
+            promise.then(function (value) {
+                if (1 == value) {
+                    res.render('result', {
+                        title: '登陆成功。。。。',
+                        user: req.session.user,
+                        page_flag: 1,
+                        path: config.path
+                    });
+                } else {
+                    res.render('result', {
+                        title: '--------。登陆失败',
+                        user: req.session.user,
+                        page_flag: 1,
+                        path: config.path
+                    });
+                }
+            }, function (value) {
+                console.log("error");
+                res.render('result', {title: '--------。登陆失败', user: req.session.user, page_flag: 1, path: config.path});
+            });
+        });
+
+        /*
+        * 20170419
+        * */
+        //req.on('data',function(data){
+        //    var data = querystring.parse(data.toString());
+        //    var username = data.userName;
+        //    var password = sha1.md5(data.userPassword);
+        //    superagent.get(config.sso_url+"?username="+username+"&password="+password)
+        //        .end(function(err,result){
+        //            if(err){//登陆出错
+        //                console.log("哎吆。。出错了。。。。。。");
+        //                res.render('result',{title:'--------。登陆失败',user:req.session.user,page_flag:1,path:config.path});
+        //            }else{
+        //                var result = JSON.parse(result.text);
+        //                var logint_state  = result.logint_state-0;
+        //                if(0==logint_state){//登陆失败
+        //                    res.render('result',{title:'--------。登陆失败',user:req.session.user,page_flag:1,path:config.path});
+        //                }else{
+        //                    var user = new userEntity();
+        //                   user.userName = result.userName;
+        //                   user.userAddress = result.userAddress;
+        //                   user.userEmail = result.userEmail;
+        //                   user.userHead = result.userHead;
+        //                   user.userId = result.userId;
+        //                   user.userIntroduce = result.userIntroduce;
+        //                   user.userSex = result.userSex;
+        //                   user.userState = result.userState;
+        //                   user.userType = result.userType;
+        //                   user.userBack =  result.userBack;
+        //                    req.session.user = user;
+        //                    //console.log(user);
+        //                    res.render('result',{title:'登陆成功。。。。。。。。',user:req.session.user,page_flag:1,path:config.path});
+        //                }
+        //            }
+        //        });
             /*
             * 20170416
             * 搭建起了sso .
@@ -411,7 +459,7 @@ router.post(
             //       res.render('result',{title:'--------。登陆失败',user:req.session.user,page_flag:1,path:config.path});
             //   }
             //});
-        });
+
     }
 );
 
