@@ -21,9 +21,9 @@ module.exports = function(app){
         '/addcookie/:str',
         function(req,res){
             var userMd5 = req.params.str;
-            //console.log(userMd5);
+            console.log(userMd5);
             res.cookie ('userMd5',userMd5);
-            res.send("Hello");
+            res.send(null);
         }
     );
     /*

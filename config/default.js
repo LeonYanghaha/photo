@@ -6,6 +6,8 @@
 module.exports ={
   //sso url
   sso_url:'http://localhost:8081/login' ,
+  //sso getSession
+  sso_getsession:'http://localhost:8081/getsession' ,
   //path 这个配置项，是实在没办法之后的最low的解决方案。
   path:'../../../../..',
   //配置session的相关信息

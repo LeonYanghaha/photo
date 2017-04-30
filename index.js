@@ -11,6 +11,7 @@ var route = require('./route/index.js');
 var path = require('path');
 var flash = require('connect-flash');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 //var MongoStore = require('connect-mongo')(session);
 //引入上传文件的依赖库，这些库是第一次使用，要注意多看帮助文档
 /*var multer  = require('multer')
@@ -22,6 +23,9 @@ app.use(function(req, res, next){
     res.locals.session = req.session;
     next();
 });
+
+//设置cookie
+app.use(cookieParser());
 
 // 设置静态文件目录
 app.use(express.static('style'));

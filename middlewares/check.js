@@ -1,7 +1,7 @@
 /**
  *2017/3/19.
  */
-
+var superagent = require('superagent');
 
 module.exports = {
     /*
@@ -22,9 +22,45 @@ module.exports = {
     * */
     checkLogin: function checkLogin(req, res, next) {
         if (!req.session.user) {
+            var cookuserMd5 = req.cookies.userMd5;
+            try{
+                if(cookuserMd5.length!=32){
+                    cookuserMd5 = '0';
+                }
+            }catch (e) {
+                cookuserMd5 = '0';
+            };
+            var promise = new Promise(function(resolve, reject){
+                superagent.get(config.sso_getsession+'/'+cookuserMd5)
+                    .end(function(err,result){
+                        if(err){//登陆出错
+                            reject(0);
+                        }else{
+                            var result = JSON.parse(result.text);
+                            var logint_state  = result.logint_state-0;
+                            if(1==logint_state){
+                                user = JSON.parse(result.user);
+                                req.session.user = user;
+
+                                resolve(1);
+                            }else{//登陆失败
+                                resolve(0);
+                            }
+                        }
+                    });
+            });
+        promise.then(function(value) {
+            if(1==value){
+               // res.render('result',{title:'登录成功',user:req.session.user,userMd5:sha1.md5(req.session.user.userName)});
+                next();
+            }else{
+                return res.redirect('../../user_login');
+            }
+        }, function(value) {
+            console.log("error");
             return res.redirect('../../user_login');
-        }
-        next();
+        });
+    }
     },
 
     checkNotLogin: function checkNotLogin(req, res, next) {

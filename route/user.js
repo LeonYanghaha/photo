@@ -358,7 +358,7 @@ router.post(
             var password = sha1.md5(data.userPassword);
             var user;
             var promise = new Promise(function (resolve, reject) {
-                superagent.get(config.sso_url + "?username=" + username + "&password=" + password)
+                superagent.get(config.sso_url + "?username=" + username + "&password=" + password+'&cookies='+cookuserMd5)
                     .end(function (err, result) {
                         if (err) {//登陆出错
                             reject(0);
