@@ -8,6 +8,7 @@ module.exports = {
      * 20170323
      * 加载县
      * */
+    
     getArea:function(id,cb){
         query('SELECT area_id,area_name ,city_id FROM AREA WHERE city_id = ?;',
             [id],
