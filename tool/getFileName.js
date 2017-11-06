@@ -10,6 +10,8 @@ module.exports = {
         return UUID()+"-"+timeflage();
     }
 };
+
+
 /*
 * 20170322
 * 负责产生一个18位的随机串
