@@ -3,6 +3,7 @@
 *
 * 整个项目的配置文件
 * */
+
 module.exports ={
   //sso url
   sso_url:'http://localhost:8081/login' ,
